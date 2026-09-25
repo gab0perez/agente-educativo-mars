@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF0F5" />
+      <stop offset="50%" stop-color="#FCE4EC" />
+      <stop offset="100%" stop-color="#F8BBD0" />
+    </linearGradient>
+    <linearGradient id="petalGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF80AB" />
+      <stop offset="100%" stop-color="#E91E63" />
+    </linearGradient>
+    <linearGradient id="petalGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF4081" />
+      <stop offset="100%" stop-color="#C2185B" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#880E4F" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  
+  <!-- Background with smooth rounded squircle -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" />
+  
+  <!-- Outer subtle ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.6" />
+  
+  <!-- Floral Icon Lily / Sakura representing MAR -->
+  <g transform="translate(256, 256)" filter="url(#shadow)">
+    <!-- 5 Petals -->
+    <path d="M 0,-150 C -45,-90 -45,-30 0,0 C 45,-30 45,-90 0,-150 Z" fill="url(#petalGrad1)" />
+    <path d="M 142,-46 C 114,-8 70,25 0,0 C 70,-35 114,-8 142,-46 Z" transform="rotate(72)" fill="url(#petalGrad2)" />
+    <path d="M 142,-46 C 114,-8 70,25 0,0 C 70,-35 114,-8 142,-46 Z" transform="rotate(144)" fill="url(#petalGrad1)" />
+    <path d="M 142,-46 C 114,-8 70,25 0,0 C 70,-35 114,-8 142,-46 Z" transform="rotate(216)" fill="url(#petalGrad2)" />
+    <path d="M 142,-46 C 114,-8 70,25 0,0 C 70,-35 114,-8 142,-46 Z" transform="rotate(288)" fill="url(#petalGrad1)" />
+    
+    <!-- Central Pistil / Core -->
+    <circle cx="0" cy="0" r="32" fill="#FFF9C4" />
+    <circle cx="0" cy="0" r="20" fill="#FFE082" />
+    <circle cx="0" cy="0" r="10" fill="#FFB300" />
+    
+    <!-- Golden dots -->
+    <circle cx="0" cy="-45" r="4" fill="#FFB300" />
+    <circle cx="43" cy="-14" r="4" fill="#FFB300" />
+    <circle cx="26" cy="36" r="4" fill="#FFB300" />
+    <circle cx="-26" cy="36" r="4" fill="#FFB300" />
+    <circle cx="-43" cy="-14" r="4" fill="#FFB300" />
+  </g>
+</svg>
