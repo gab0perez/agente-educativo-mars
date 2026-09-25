@@ -1,0 +1,260 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-5);
+  width: 100%;
+  max-width: 760px; /* Ancho de lectura descansada para lecciones */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   HEADER DE LECCIÓN
+   ========================================================================== */
+.headerCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-2);
+  padding: var(--mar-space-4);
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-lg);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mar-space-2);
+}
+
+.breadcrumb {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  color: var(--mar-rose-600);
+  font-weight: var(--mar-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.lessonTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.stepIndicatorRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--mar-space-1);
+  padding-top: var(--mar-space-2);
+  border-top: 1px solid var(--mar-border-subtle);
+}
+
+.stepBadge {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  color: var(--mar-text-secondary);
+  background-color: var(--mar-surface-subtle);
+  padding: 3px 10px;
+  border-radius: var(--mar-radius-full);
+}
+
+.sectionTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+}
+
+/* ==========================================================================
+   CUERPO DE LA LECCIÓN (BLOQUES DE CONTENIDO)
+   ========================================================================== */
+.contentCard {
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-xl);
+  padding: var(--mar-space-5);
+  box-shadow: var(--mar-shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-4);
+}
+
+@media (min-width: 640px) {
+  .contentCard {
+    padding: var(--mar-space-6);
+  }
+}
+
+.blockHeading {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-lg);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  margin-bottom: 2px;
+}
+
+.blockParagraph {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-base);
+  color: var(--mar-text-primary);
+  line-height: 1.65;
+}
+
+/* Bloque KeyPoint */
+.keyPointBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-1);
+  padding: var(--mar-space-4);
+  background-color: var(--mar-rose-50);
+  border: 1px solid var(--mar-rose-100);
+  border-left: 4px solid var(--mar-rose-500);
+  border-radius: var(--mar-radius-md);
+}
+
+.keyPointTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-rose-700);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: var(--mar-space-1);
+}
+
+.keyPointText {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-primary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Bloque Ejemplo */
+.exampleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-2);
+  padding: var(--mar-space-4);
+  background-color: var(--mar-surface-subtle);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-md);
+}
+
+.exampleTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--mar-space-1);
+}
+
+.exampleText {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Bloque Reflexión */
+.reflectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-3);
+  padding: var(--mar-space-4);
+  background-color: var(--mar-surface-subtle);
+  border: 1px solid var(--mar-border-medium);
+  border-radius: var(--mar-radius-lg);
+  margin-top: var(--mar-space-2);
+}
+
+.reflectionQuestion {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-base);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mar-space-2);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN ENTRE PASOS
+   ========================================================================== */
+.navigationRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mar-space-3);
+  padding-top: var(--mar-space-3);
+  border-top: 1px solid var(--mar-border-subtle);
+}
+
+/* ==========================================================================
+   ESTADO: LECCIÓN COMPLETADA
+   ========================================================================== */
+.completedCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--mar-space-8) var(--mar-space-4);
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-xl);
+  box-shadow: var(--mar-shadow-md);
+  gap: var(--mar-space-5);
+}
+
+.completedTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-2xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  margin-bottom: var(--mar-space-1);
+}
+
+.completedDesc {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-base);
+  color: var(--mar-text-secondary);
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.savedReflectionSnippet {
+  width: 100%;
+  max-width: 440px;
+  padding: var(--mar-space-3) var(--mar-space-4);
+  background-color: var(--mar-surface-subtle);
+  border-radius: var(--mar-radius-md);
+  border: 1px solid var(--mar-border-subtle);
+  text-align: left;
+}
+
+.snippetLabel {
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-rose-600);
+  margin-bottom: 4px;
+}
+
+.snippetText {
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-primary);
+  font-style: italic;
+}

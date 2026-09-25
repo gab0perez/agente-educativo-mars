@@ -1,0 +1,69 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mar-space-1);
+  border-radius: var(--mar-radius-full);
+  font-family: var(--mar-font-body);
+  font-weight: var(--mar-weight-medium);
+  line-height: 1;
+  user-select: none;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   TAMAÑOS
+   ========================================================================== */
+.size-sm {
+  padding: 4px 8px;
+  font-size: var(--mar-text-xs);
+}
+
+.size-md {
+  padding: 6px 12px;
+  font-size: var(--mar-text-sm);
+}
+
+/* ==========================================================================
+   VARIANTES DE PROCEDENCIA
+   ========================================================================== */
+/* CLASS_ORIGIN: Confirmado por la estudiante como apunte de clase */
+.variant-CLASS_ORIGIN {
+  background-color: var(--mar-meta-class-bg);
+  color: var(--mar-meta-class-text);
+  border: 1px solid var(--mar-meta-class-border);
+}
+
+/* USER_PROVIDED: Reflexión o respuesta introducida por Mar */
+.variant-USER_PROVIDED {
+  background-color: var(--mar-meta-user-bg);
+  color: var(--mar-meta-user-text);
+  border: 1px solid var(--mar-meta-user-border);
+}
+
+/* AI_INFERENCE: Hipótesis o sugerencia por confirmar (borde punteado característico) */
+.variant-AI_INFERENCE {
+  background-color: var(--mar-meta-inf-bg);
+  color: var(--mar-meta-inf-text);
+  border: 1px dashed var(--mar-meta-inf-border);
+}
+
+/* AI_COMPLEMENTARY: Enriquecimiento pedagógico y explicaciones del tutor */
+.variant-AI_COMPLEMENTARY {
+  background-color: var(--mar-meta-ai-bg);
+  color: var(--mar-meta-ai-text);
+  border: 1px solid var(--mar-meta-ai-border);
+}

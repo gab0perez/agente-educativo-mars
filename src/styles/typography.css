@@ -1,0 +1,70 @@
+/**
+ * MAR Design System — Utilidades Tipográficas
+ */
+
+.mar-display-hero {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-3xl);
+  font-weight: var(--mar-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--mar-text-primary);
+}
+
+.mar-heading-1 {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-2xl);
+  font-weight: var(--mar-weight-bold);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--mar-text-primary);
+}
+
+.mar-heading-2 {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-xl);
+  font-weight: var(--mar-weight-semibold);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--mar-text-primary);
+}
+
+.mar-heading-3 {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-lg);
+  font-weight: var(--mar-weight-semibold);
+  line-height: 1.35;
+  color: var(--mar-text-primary);
+}
+
+.mar-body-lead {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-lg);
+  font-weight: var(--mar-weight-normal);
+  line-height: 1.6;
+  color: var(--mar-text-secondary);
+}
+
+.mar-body {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-base);
+  font-weight: var(--mar-weight-normal);
+  line-height: 1.55;
+  color: var(--mar-text-primary);
+}
+
+.mar-body-sm {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-normal);
+  line-height: 1.5;
+  color: var(--mar-text-secondary);
+}
+
+.mar-caption {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  line-height: 1.4;
+  color: var(--mar-text-muted);
+}

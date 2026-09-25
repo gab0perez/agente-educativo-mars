@@ -1,0 +1,64 @@
+.container {
+  margin-top: var(--mar-space-3);
+  padding: var(--mar-space-3);
+  background: var(--mar-rose-50);
+  border: 1px solid var(--mar-rose-200);
+  border-radius: var(--mar-radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-2);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mar-space-2);
+}
+
+.icon {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.questionText {
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-medium);
+  color: var(--mar-rose-800);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.optionsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mar-space-2);
+  margin-top: 4px;
+}
+
+.optionButton {
+  padding: 8px 14px;
+  background: var(--mar-surface-card);
+  border: 1px solid var(--mar-rose-200);
+  border-radius: var(--mar-radius-full);
+  color: var(--mar-rose-700);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.optionButton:hover:not(:disabled) {
+  background: var(--mar-rose-600);
+  color: var(--mar-text-inverse);
+  border-color: var(--mar-rose-600);
+  transform: translateY(-1px);
+}
+
+.optionButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

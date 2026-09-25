@@ -1,0 +1,8 @@
+/**
+ * MAR Design System — Entrypoint de Estilos
+ */
+
+@import './tokens.css';
+@import './reset.css';
+@import './typography.css';
+@import './responsive.css';

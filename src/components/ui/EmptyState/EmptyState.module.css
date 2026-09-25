@@ -1,0 +1,48 @@
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--mar-space-8) var(--mar-space-4);
+  background-color: var(--mar-surface-card);
+  border: 1px dashed var(--mar-border-medium);
+  border-radius: var(--mar-radius-xl);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.iconContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--mar-radius-full);
+  background-color: var(--mar-rose-50);
+  color: var(--mar-rose-500);
+  font-size: 1.6rem;
+  margin-bottom: var(--mar-space-3);
+}
+
+.title {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-lg);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  margin-bottom: var(--mar-space-1);
+}
+
+.description {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+  max-width: 320px;
+  margin-bottom: var(--mar-space-4);
+  line-height: 1.5;
+}
+
+.actionWrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,90 @@
+.contextBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mar-space-2);
+  padding: 6px var(--mar-space-4);
+  background: var(--mar-surface-subtle);
+  border-bottom: 1px solid var(--mar-border-subtle);
+  font-size: var(--mar-text-xs);
+  min-height: 38px;
+}
+
+.pillsContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+}
+
+.pillsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-full);
+  color: var(--mar-text-secondary);
+  font-weight: var(--mar-weight-medium);
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(42, 36, 38, 0.02);
+}
+
+.topicPill {
+  color: var(--mar-rose-700);
+  background: var(--mar-rose-50);
+  border-color: var(--mar-rose-200);
+}
+
+.lessonPill {
+  color: var(--mar-text-primary);
+  border-color: var(--mar-rose-200);
+}
+
+.activeNotePill {
+  color: var(--mar-rose-800);
+  background: var(--mar-rose-100);
+  border-color: var(--mar-rose-300);
+  font-weight: var(--mar-weight-semibold);
+}
+
+.notesPill {
+  color: var(--mar-text-secondary);
+}
+
+.pillText {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clearButton {
+  background: transparent;
+  border: none;
+  color: var(--mar-text-muted);
+  font-size: 11px;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--mar-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+  background: var(--mar-rose-100);
+  color: var(--mar-rose-700);
+}

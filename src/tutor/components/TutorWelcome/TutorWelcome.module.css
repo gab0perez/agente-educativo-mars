@@ -1,0 +1,146 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--mar-space-6) var(--mar-space-4);
+  max-width: 540px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lilyBadge {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--mar-radius-full);
+  background: linear-gradient(135deg, var(--mar-rose-50) 0%, var(--mar-rose-100) 100%);
+  border: 1px solid var(--mar-rose-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: var(--mar-space-3);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.greetingTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-2xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  margin: 0 0 var(--mar-space-2) 0;
+}
+
+.greetingBody {
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 var(--mar-space-4) 0;
+}
+
+.contextBanner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mar-space-2);
+  background: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-full);
+  padding: 6px 14px;
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-primary);
+  margin-bottom: var(--mar-space-6);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.contextIcon {
+  font-size: 0.95rem;
+}
+
+.promptsSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-3);
+  text-align: left;
+}
+
+.promptsHeader {
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.promptsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--mar-space-2);
+}
+
+.promptCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mar-space-3);
+  padding: var(--mar-space-3);
+  background: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-lg);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  min-height: 64px;
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.promptCard:hover {
+  background: var(--mar-rose-50);
+  border-color: var(--mar-rose-200);
+  transform: translateY(-1px);
+  box-shadow: var(--mar-shadow-md);
+}
+
+.promptIcon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.promptTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.promptTitle {
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  line-height: 1.3;
+}
+
+.promptSubtitle {
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-muted);
+  line-height: 1.3;
+}
+
+@media (max-width: 480px) {
+  .promptsGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,64 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  background-color: var(--mar-glass-bg);
+  backdrop-filter: var(--mar-glass-blur);
+  -webkit-backdrop-filter: var(--mar-glass-blur);
+  border-bottom: 1px solid var(--mar-border-subtle);
+  padding-top: max(var(--mar-space-3), env(safe-area-inset-top, var(--mar-space-3)));
+  padding-bottom: var(--mar-space-3);
+  padding-left: var(--mar-space-4);
+  padding-right: var(--mar-space-4);
+  box-sizing: border-box;
+}
+
+.inner {
+  max-width: var(--mar-content-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brandContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--mar-space-2);
+}
+
+.logoText {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-rose-600);
+  letter-spacing: -0.01em;
+}
+
+.logoBadge {
+  font-size: var(--mar-text-xs);
+  padding: 2px 8px;
+  border-radius: var(--mar-radius-full);
+  background-color: var(--mar-rose-50);
+  color: var(--mar-rose-600);
+  font-weight: var(--mar-weight-medium);
+  border: 1px solid var(--mar-rose-100);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--mar-space-2);
+}
+
+.studentGreeting {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+}
+
+.studentName {
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+}

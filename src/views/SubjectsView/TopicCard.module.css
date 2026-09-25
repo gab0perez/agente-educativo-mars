@@ -1,0 +1,82 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--mar-space-4);
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-lg);
+  box-shadow: var(--mar-shadow-sm);
+  box-sizing: border-box;
+  width: 100%;
+  gap: var(--mar-space-2);
+  transition: border-color var(--mar-transition-fast), box-shadow var(--mar-transition-fast);
+}
+
+.card:hover {
+  border-color: var(--mar-rose-200);
+  box-shadow: var(--mar-shadow-md);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mar-space-2);
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  padding: 3px 8px;
+  border-radius: var(--mar-radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.status-nuevo {
+  background-color: var(--mar-surface-subtle);
+  color: var(--mar-text-secondary);
+  border: 1px solid var(--mar-border-subtle);
+}
+
+.status-en_estudio {
+  background-color: var(--mar-rose-50);
+  color: var(--mar-rose-600);
+  border: 1px solid var(--mar-rose-100);
+}
+
+.status-revisado {
+  background-color: var(--mar-state-success-bg);
+  color: var(--mar-state-success-text);
+  border: 1px solid var(--mar-state-success-border);
+}
+
+.title {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-base);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.description {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--mar-space-2);
+  margin-top: var(--mar-space-2);
+  padding-top: var(--mar-space-2);
+  border-top: 1px solid var(--mar-border-subtle);
+}

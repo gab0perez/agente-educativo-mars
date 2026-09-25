@@ -1,0 +1,158 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mar-space-2);
+  font-family: var(--mar-font-display);
+  font-weight: var(--mar-weight-semibold);
+  border-radius: var(--mar-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  text-decoration: none;
+  transition: background-color var(--mar-transition-fast),
+              border-color var(--mar-transition-fast),
+              transform var(--mar-transition-fast),
+              box-shadow var(--mar-transition-fast),
+              opacity var(--mar-transition-fast);
+  
+  /* Touch target garantizado para smartphones */
+  min-height: var(--mar-touch-target-min);
+  min-width: var(--mar-touch-target-min);
+}
+
+/* Micro-press feedback para pantallas táctiles */
+.button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--mar-rose-500);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   TAMAÑOS
+   ========================================================================== */
+.size-sm {
+  padding: var(--mar-space-2) var(--mar-space-3);
+  font-size: var(--mar-text-sm);
+  min-height: var(--mar-touch-target-min);
+}
+
+.size-md {
+  padding: var(--mar-space-3) var(--mar-space-5);
+  font-size: var(--mar-text-base);
+  min-height: 48px;
+}
+
+.size-lg {
+  padding: var(--mar-space-4) var(--mar-space-6);
+  font-size: var(--mar-text-lg);
+  min-height: 54px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ==========================================================================
+   VARIANTES
+   ========================================================================== */
+/* Primario: Acción principal, rosa floral cálido con sombra suave */
+.variant-primary {
+  background-color: var(--mar-rose-600);
+  color: var(--mar-text-inverse);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.variant-primary:hover:not(:disabled) {
+  background-color: var(--mar-rose-700);
+  box-shadow: var(--mar-shadow-md);
+}
+
+.variant-primary:active:not(:disabled) {
+  background-color: var(--mar-rose-800);
+}
+
+/* Secundario: Superficie neutra cálida con borde suave */
+.variant-secondary {
+  background-color: var(--mar-surface-card);
+  color: var(--mar-text-primary);
+  border-color: var(--mar-border-medium);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.variant-secondary:hover:not(:disabled) {
+  background-color: var(--mar-surface-subtle);
+  border-color: var(--mar-rose-300);
+}
+
+.variant-secondary:active:not(:disabled) {
+  background-color: var(--mar-rose-50);
+}
+
+/* Ghost: Sin fondo, ideal para acciones terciarias en barra móvil */
+.variant-ghost {
+  background-color: transparent;
+  color: var(--mar-text-secondary);
+}
+
+.variant-ghost:hover:not(:disabled) {
+  background-color: var(--mar-rose-50);
+  color: var(--mar-rose-600);
+}
+
+.variant-ghost:active:not(:disabled) {
+  background-color: var(--mar-rose-100);
+}
+
+/* Danger: Alertas y descarte */
+.variant-danger {
+  background-color: var(--mar-state-error-bg);
+  color: var(--mar-state-error-text);
+  border-color: var(--mar-state-error-border);
+}
+
+.variant-danger:hover:not(:disabled) {
+  background-color: #FEE2E2;
+}
+
+/* ==========================================================================
+   ESTADOS: DISABLED & LOADING
+   ========================================================================== */
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.loading {
+  position: relative;
+  cursor: wait;
+}
+
+.loading .content {
+  visibility: hidden;
+}
+
+.spinner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

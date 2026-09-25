@@ -1,0 +1,105 @@
+.container {
+  background: var(--surface-card, rgba(255, 255, 255, 0.85));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-soft, rgba(251, 113, 133, 0.2));
+  border-radius: var(--radius-2xl, 24px);
+  padding: var(--space-5, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  box-shadow: var(--shadow-sm, 0 4px 20px rgba(251, 113, 133, 0.06));
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 700;
+  color: var(--text-primary, #1C1917);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.subtitle {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #44403C);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.groupsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.groupCard {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.05));
+  border-radius: var(--radius-lg, 16px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #78716C);
+}
+
+.topicsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topicItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2, 8px) var(--space-3, 12px);
+  background: var(--surface-card, #FFFFFF);
+  border-radius: var(--radius-md, 12px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  gap: var(--space-2, 8px);
+}
+
+.topicName {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--text-primary, #1C1917);
+}
+
+.topicMeta {
+  font-size: var(--font-size-xs, 0.75rem);
+  color: var(--text-muted, #78716C);
+}
+
+.topicActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: var(--space-6, 24px);
+  }
+}

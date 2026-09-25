@@ -1,0 +1,35 @@
+.practiceViewContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: var(--space-12, 48px);
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 24px);
+  padding: 0 var(--space-4, 16px);
+}
+
+.errorBanner {
+  background: var(--color-error-50, #FEF2F2);
+  border: 1px solid var(--color-error-200, #FECACA);
+  border-radius: var(--radius-lg, 16px);
+  padding: var(--space-4, 16px);
+  color: var(--color-error-700, #B91C1C);
+  font-size: var(--font-size-sm, 0.875rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin: 0 var(--space-4, 16px);
+}
+
+@media (min-width: 640px) {
+  .contentWrapper {
+    padding: 0 var(--space-6, 24px);
+  }
+}

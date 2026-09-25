@@ -1,0 +1,188 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--mar-space-4);
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-rose-100);
+  border-radius: var(--mar-radius-xl);
+  box-shadow: var(--mar-shadow-md);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.svgWrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--mar-space-2);
+}
+
+.glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--mar-radius-full);
+  background: radial-gradient(circle, rgba(217, 83, 122, 0.18) 0%, rgba(217, 83, 122, 0) 70%);
+  animation: glowPulse 1.2s var(--mar-transition-smooth) forwards;
+}
+
+.lilySvg {
+  width: 54px;
+  height: 54px;
+  overflow: visible;
+}
+
+/* Pétalos con animación de apertura botánica coordinada (1.1s) */
+.petalCenter {
+  transform-origin: 50% 85%;
+  animation: bloomCenter 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.petalLeft {
+  transform-origin: 50% 85%;
+  animation: bloomLeft 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.petalRight {
+  transform-origin: 50% 85%;
+  animation: bloomRight 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stem {
+  transform-origin: 50% 100%;
+  animation: growStem 0.8s ease-out forwards;
+}
+
+.sparkle {
+  opacity: 0;
+  animation: sparkleFade 1.1s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+
+/* ==========================================================================
+   KEYFRAMES DE FLORECIMIENTO
+   ========================================================================== */
+@keyframes bloomCenter {
+  0% {
+    transform: scale(0.3) translateY(10px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bloomLeft {
+  0% {
+    transform: scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(-22deg) translateX(-2px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes bloomRight {
+  0% {
+    transform: scale(0.2) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(22deg) translateX(2px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes growStem {
+  0% {
+    transform: scaleY(0.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sparkleFade {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.title {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-base);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+  margin-bottom: 2px;
+}
+
+.subtitle {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-secondary);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   PREFERS-REDUCED-MOTION (Renderizado Estático Accesible)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .petalCenter,
+  .petalLeft,
+  .petalRight,
+  .stem,
+  .glow,
+  .sparkle {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .petalLeft {
+    transform: rotate(-22deg) translateX(-2px) !important;
+  }
+
+  .petalRight {
+    transform: rotate(22deg) translateX(2px) !important;
+  }
+}

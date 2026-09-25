@@ -1,0 +1,66 @@
+.skeleton {
+  background-color: var(--mar-surface-subtle);
+  background-image: linear-gradient(
+    90deg,
+    var(--mar-surface-subtle) 0%,
+    #FAF4EE 50%,
+    var(--mar-surface-subtle) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  display: block;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==========================================================================
+   VARIANTES DE FORMA
+   ========================================================================== */
+.variant-text {
+  height: 1em;
+  border-radius: var(--mar-radius-sm);
+  margin-bottom: var(--mar-space-2);
+  width: 100%;
+}
+
+.variant-title {
+  height: 1.5em;
+  border-radius: var(--mar-radius-sm);
+  margin-bottom: var(--mar-space-3);
+  width: 70%;
+}
+
+.variant-card {
+  height: 120px;
+  border-radius: var(--mar-radius-lg);
+  width: 100%;
+}
+
+.variant-thumbnail {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--mar-radius-md);
+  width: 100%;
+}
+
+.variant-circle {
+  border-radius: var(--mar-radius-full);
+  width: 44px;
+  height: 44px;
+}
+
+/* Reduced motion: pulso sutil estático sin animación continua de barrido */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background-image: none;
+    background-color: var(--mar-surface-subtle);
+    opacity: 0.8;
+  }
+}

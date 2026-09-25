@@ -1,0 +1,143 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-5);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-2);
+}
+
+@media (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.title {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-2xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+  margin: 0;
+}
+
+/* Sección de captura embebida / desplegable */
+.captureSection {
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-xl);
+  padding: var(--mar-space-4);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+/* Filtros de Materias */
+.filtersRow {
+  display: flex;
+  align-items: center;
+  gap: var(--mar-space-2);
+  overflow-x: auto;
+  padding-bottom: var(--mar-space-2);
+  -webkit-overflow-scrolling: touch;
+}
+
+.filterPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: var(--mar-radius-full);
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  border: 1px solid var(--mar-border-subtle);
+  background-color: var(--mar-surface-card);
+  color: var(--mar-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  min-height: 36px;
+}
+
+.filterPill:hover {
+  background-color: var(--mar-surface-subtle);
+  color: var(--mar-text-primary);
+}
+
+.filterPillActive {
+  background-color: var(--mar-rose-50);
+  border-color: var(--mar-rose-300);
+  color: var(--mar-rose-800);
+  font-weight: var(--mar-weight-semibold);
+}
+
+/* Cuadrícula de apuntes */
+.notesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mar-space-4);
+}
+
+@media (min-width: 600px) {
+  .notesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .notesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Cuadro de confirmación de eliminación */
+.deleteConfirmOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(45, 38, 42, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: var(--mar-space-3);
+}
+
+.deleteConfirmCard {
+  background-color: var(--mar-surface-card);
+  border-radius: var(--mar-radius-lg);
+  padding: var(--mar-space-5);
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-3);
+  box-shadow: var(--mar-shadow-lg);
+}
+
+.deleteTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-lg);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  margin: 0;
+}
+
+.deleteDesc {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}

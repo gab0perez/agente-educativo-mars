@@ -1,0 +1,68 @@
+/**
+ * MAR Design System — Fundamentos Responsive y Layout
+ */
+
+.mar-container {
+  width: 100%;
+  max-width: var(--mar-content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--mar-space-4);
+  padding-right: var(--mar-space-4);
+}
+
+@media (min-width: 768px) {
+  .mar-container {
+    padding-left: var(--mar-space-6);
+    padding-right: var(--mar-space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mar-container {
+    padding-left: var(--mar-space-8);
+    padding-right: var(--mar-space-8);
+  }
+}
+
+/* Rejillas y Flujos Fluidos */
+.mar-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-4);
+}
+
+.mar-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--mar-space-3);
+}
+
+.mar-grid-adaptive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mar-space-4);
+}
+
+@media (min-width: 480px) {
+  .mar-grid-adaptive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mar-grid-adaptive {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--mar-space-6);
+  }
+}
+
+/* Área táctil móvil garantizada (44x44px) */
+.mar-touch-target {
+  min-width: var(--mar-touch-target-min);
+  min-height: var(--mar-touch-target-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

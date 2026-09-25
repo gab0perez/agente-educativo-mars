@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.title {
+  font-size: var(--font-size-xl, 1.25rem);
+  font-weight: 700;
+  color: var(--text-primary, #1C1917);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.subtitle {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-muted, #78716C);
+  margin: 0;
+}
+
+.reviewsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 16px);
+}
+
+.emptyStateWrapper {
+  padding: var(--space-6, 24px) var(--space-4, 16px);
+  background: var(--surface-card, rgba(255, 255, 255, 0.8));
+  border: 1px dashed var(--border-soft, rgba(251, 113, 133, 0.3));
+  border-radius: var(--radius-2xl, 24px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3, 12px);
+}
+
+.emptyIcon {
+  font-size: 2.5rem;
+}
+
+.emptyTitle {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: 700;
+  color: var(--text-primary, #1C1917);
+  margin: 0;
+}
+
+.emptyDescription {
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--text-secondary, #44403C);
+  max-width: 440px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.loadingWrapper {
+  padding: var(--space-6, 24px);
+  text-align: center;
+  color: var(--text-muted, #78716C);
+  font-size: var(--font-size-sm, 0.875rem);
+}

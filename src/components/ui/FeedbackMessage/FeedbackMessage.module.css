@@ -1,0 +1,107 @@
+.feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mar-space-3);
+  padding: var(--mar-space-3) var(--mar-space-4);
+  border-radius: var(--mar-radius-md);
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  line-height: 1.45;
+  box-sizing: border-box;
+  width: 100%;
+  transition: opacity var(--mar-transition-base), transform var(--mar-transition-base);
+}
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.contentWrapper {
+  flex: 1 1 auto;
+}
+
+.title {
+  font-weight: var(--mar-weight-semibold);
+  margin-bottom: 2px;
+}
+
+.description {
+  color: inherit;
+  opacity: 0.92;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--mar-space-2);
+  margin-top: var(--mar-space-2);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.65;
+  cursor: pointer;
+  padding: 4px;
+  margin: -4px -4px 0 0;
+  border-radius: var(--mar-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   TIPOS SEMÁNTICOS
+   ========================================================================== */
+.type-success {
+  background-color: var(--mar-state-success-bg);
+  color: var(--mar-state-success-text);
+  border: 1px solid var(--mar-state-success-border);
+}
+
+.type-warning {
+  background-color: var(--mar-state-warning-bg);
+  color: var(--mar-state-warning-text);
+  border: 1px solid var(--mar-state-warning-border);
+}
+
+.type-error {
+  background-color: var(--mar-state-error-bg);
+  color: var(--mar-state-error-text);
+  border: 1px solid var(--mar-state-error-border);
+}
+
+.type-info {
+  background-color: var(--mar-state-info-bg);
+  color: var(--mar-state-info-text);
+  border: 1px solid var(--mar-state-info-border);
+}
+
+/* ==========================================================================
+   VARIANTES DE PRESENTACIÓN
+   ========================================================================== */
+.variant-inline {
+  border-radius: var(--mar-radius-sm);
+  padding: var(--mar-space-2) var(--mar-space-3);
+  font-size: var(--mar-text-xs);
+}
+
+.variant-banner {
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.variant-toast {
+  box-shadow: var(--mar-shadow-lg);
+  border-radius: var(--mar-radius-lg);
+}

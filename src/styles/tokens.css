@@ -1,0 +1,153 @@
+/**
+ * MAR Design System — Tokens Fundamentales
+ * "Tu espacio para aprender, crecer y florecer" 🌸
+ * 
+ * Directiva: Los neutros cálidos predominan en las superficies para crear un entorno
+ * de calma y estudio personal. El rosa floral actúa exclusivamente como acento.
+ */
+
+:root {
+  /* ==========================================================================
+     1. SUPERFICIES Y NEUTROS CÁLIDOS (Protagonistas del Layout)
+     ========================================================================== */
+  --mar-surface-canvas:     #FAF7F5; /* Fondo general cálido, sereno y descansado */
+  --mar-surface-card:       #FFFFFF; /* Superficie principal de lectura y lecciones */
+  --mar-surface-subtle:     #F4EFEB; /* Fondo secundario para agrupaciones y bloques */
+  --mar-surface-elevated:   #FFFFFF; /* Superficies flotantes y modales */
+  --mar-border-subtle:      #EDE4DC; /* Separadores suaves y bordes de tarjetas */
+  --mar-border-medium:      #D8CDC2; /* Bordes de inputs y componentes interactivos */
+
+  /* ==========================================================================
+     2. ACENTOS FLORALES Y ACCIONES (Uso Delicado y Preciso)
+     ========================================================================== */
+  --mar-rose-50:            #FDF2F4; /* Fondos tenues para estados activos/hover */
+  --mar-rose-100:           #FBE4EA; /* Badges y realces suaves */
+  --mar-rose-200:           #F7C9D6; /* Bordes interactivos y focus rings */
+  --mar-rose-300:           #F0A4BC; /* Acentos decorativos tenues */
+  --mar-rose-400:           #E8829F; /* Ilustraciones y acentos secundarios */
+  --mar-rose-500:           #D9537A; /* Rosa floral de identidad y enlaces */
+  --mar-rose-600:           #C23B64; /* Acción principal (Botón primario CTA) */
+  --mar-rose-700:           #A3294F; /* Hover y estado presionado */
+  --mar-rose-800:           #7D1A3B; /* Contraste profundo */
+
+  /* ==========================================================================
+     3. TIPOGRAFÍA Y ALTO CONTRASTE
+     ========================================================================== */
+  --mar-text-primary:       #2A2426; /* Texto principal (Contraste 13.4:1 sobre canvas) */
+  --mar-text-secondary:     #63585E; /* Texto explicativo y subtítulos (Contraste 5.5:1) */
+  --mar-text-muted:         #8F838A; /* Metadatos, timestamps y placeholders */
+  --mar-text-inverse:       #FFFFFF; /* Texto sobre botones primarios y fondos oscuros */
+
+  /* Familias Tipográficas */
+  --mar-font-display:       'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mar-font-body:          'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Escala Modular */
+  --mar-text-xs:            0.75rem;   /* 12px - Metadatos y badges */
+  --mar-text-sm:            0.875rem;  /* 14px - Texto de apoyo y subtítulos */
+  --mar-text-base:          1rem;      /* 16px - Lectura estándar móvil */
+  --mar-text-lg:            1.125rem;  /* 18px - Encabezados de cards */
+  --mar-text-xl:            1.25rem;   /* 20px - Títulos de sección */
+  --mar-text-2xl:           1.5rem;    /* 24px - Encabezados de pantalla */
+  --mar-text-3xl:           1.875rem;  /* 30px - Saludo principal ("Hola, Mar 🌸") */
+
+  /* Pesos */
+  --mar-weight-normal:      400;
+  --mar-weight-medium:      500;
+  --mar-weight-semibold:    600;
+  --mar-weight-bold:        700;
+
+  /* ==========================================================================
+     4. ESPACIADO (Base Modular de 4px)
+     ========================================================================== */
+  --mar-space-1:            0.25rem;  /* 4px */
+  --mar-space-2:            0.5rem;   /* 8px */
+  --mar-space-3:            0.75rem;  /* 12px */
+  --mar-space-4:            1rem;     /* 16px - Padding estándar móvil */
+  --mar-space-5:            1.25rem;  /* 20px */
+  --mar-space-6:            1.5rem;   /* 24px - Separación entre bloques */
+  --mar-space-8:            2rem;     /* 32px */
+  --mar-space-10:           2.5rem;   /* 40px */
+  --mar-space-12:           3rem;     /* 48px */
+
+  /* ==========================================================================
+     5. RADIOS DE CURVATURA
+     ========================================================================== */
+  --mar-radius-sm:          8px;
+  --mar-radius-md:          12px;
+  --mar-radius-lg:          18px;
+  --mar-radius-xl:          24px;
+  --mar-radius-full:        9999px;
+
+  /* ==========================================================================
+     6. SOMBRAS CÁLIDAS Y ELEVACIONES
+     ========================================================================== */
+  --mar-shadow-sm:          0 1px 3px rgba(42, 36, 38, 0.04), 0 1px 2px rgba(42, 36, 38, 0.02);
+  --mar-shadow-md:          0 4px 16px rgba(42, 36, 38, 0.06), 0 2px 4px rgba(42, 36, 38, 0.02);
+  --mar-shadow-lg:          0 12px 32px rgba(42, 36, 38, 0.08);
+  --mar-shadow-focus:       0 0 0 3px rgba(217, 83, 122, 0.25);
+
+  /* ==========================================================================
+     7. GLASSMORPHISM DELICADO Y CONTROLADO
+     ========================================================================== */
+  --mar-glass-bg:           rgba(250, 247, 245, 0.85);
+  --mar-glass-border:       1px solid rgba(255, 255, 255, 0.75);
+  --mar-glass-blur:         blur(16px);
+
+  /* ==========================================================================
+     8. METADATA VISUAL DE PROCEDENCIA (Discreta y Multimodal)
+     ========================================================================== */
+  /* CLASS_ORIGIN: Confirmado por Mar como apunte o material de clase */
+  --mar-meta-class-text:    #78350F;
+  --mar-meta-class-bg:      #FEF3C7;
+  --mar-meta-class-border:  #FDE68A;
+
+  /* USER_PROVIDED: Reflexión, apunte o respuesta directa de Mar */
+  --mar-meta-user-text:     #831843;
+  --mar-meta-user-bg:       #FCE7F3;
+  --mar-meta-user-border:   #FBCFE8;
+
+  /* AI_INFERENCE: Hipótesis o sugerencia preliminar de MAR (Por confirmar) */
+  --mar-meta-inf-text:      #1E40AF;
+  --mar-meta-inf-bg:        #EFF6FF;
+  --mar-meta-inf-border:    #BFDBFE;
+
+  /* AI_COMPLEMENTARY: Enriquecimiento pedagógico y explicaciones del tutor */
+  --mar-meta-ai-text:       #5B21B6;
+  --mar-meta-ai-bg:         #F3E8FF;
+  --mar-meta-ai-border:     #DDD6FE;
+
+  /* ==========================================================================
+     9. ESTADOS SEMÁNTICOS
+     ========================================================================== */
+  --mar-state-success-text: #065F46;
+  --mar-state-success-bg:   #ECFDF5;
+  --mar-state-success-border:#A7F3D0;
+
+  --mar-state-warning-text: #92400E;
+  --mar-state-warning-bg:   #FFFBEB;
+  --mar-state-warning-border:#FDE68A;
+
+  --mar-state-error-text:   #9F1239;
+  --mar-state-error-bg:     #FFF1F2;
+  --mar-state-error-border: #FECDD3;
+
+  --mar-state-info-text:    #1E3A8A;
+  --mar-state-info-bg:      #EFF6FF;
+  --mar-state-info-border:  #BFDBFE;
+
+  /* ==========================================================================
+     10. ERGONOMÍA Y TRANSICIONES
+     ========================================================================== */
+  --mar-touch-target-min:   44px; /* Dimensión táctil mínima para móviles */
+  --mar-transition-fast:    150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --mar-transition-base:    250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --mar-transition-smooth:  400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Breakpoints Lógicos */
+  --mar-breakpoint-sm:      480px;  /* Celular horizontal */
+  --mar-breakpoint-md:      768px;  /* Tablet vertical */
+  --mar-breakpoint-lg:      1024px; /* Tablet horizontal / Laptop */
+  --mar-breakpoint-xl:      1280px; /* Escritorio estándar */
+  --mar-content-max-width:  1140px; /* Ancho máximo de lectura descansada */
+}

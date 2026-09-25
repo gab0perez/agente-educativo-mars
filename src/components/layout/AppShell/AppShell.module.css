@@ -1,0 +1,29 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--mar-surface-canvas);
+  position: relative;
+}
+
+.mainContent {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: var(--mar-content-max-width);
+  margin: 0 auto;
+  padding-left: var(--mar-space-4);
+  padding-right: var(--mar-space-4);
+  padding-top: var(--mar-space-4);
+  /* Espacio inferior para evitar solapamiento con el BottomNav fijo */
+  padding-bottom: calc(76px + env(safe-area-inset-bottom, var(--mar-space-4)));
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .mainContent {
+    padding-left: var(--mar-space-6);
+    padding-right: var(--mar-space-6);
+    padding-top: var(--mar-space-6);
+  }
+}

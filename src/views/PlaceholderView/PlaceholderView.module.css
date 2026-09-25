@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-6);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-1);
+}
+
+.title {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-2xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+}
+
+.subtitle {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-base);
+  color: var(--mar-text-secondary);
+}

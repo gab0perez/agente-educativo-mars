@@ -1,0 +1,118 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform var(--mar-transition-fast),
+              box-shadow var(--mar-transition-fast),
+              border-color var(--mar-transition-fast);
+}
+
+/* ==========================================================================
+   VARIANTES DE SUPERFICIE
+   ========================================================================== */
+/* Solid (Principal para lecciones y lectura descansada) */
+.variant-solid {
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  box-shadow: var(--mar-shadow-sm);
+  color: var(--mar-text-primary);
+}
+
+/* Subtle (Para agrupaciones secundarias y notas auxiliares) */
+.variant-subtle {
+  background-color: var(--mar-surface-subtle);
+  border: 1px solid var(--mar-border-subtle);
+  color: var(--mar-text-primary);
+}
+
+/* Interactive (Para tarjetas clickeables como materias y lecciones) */
+.variant-interactive {
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  box-shadow: var(--mar-shadow-sm);
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.variant-interactive:hover {
+  border-color: var(--mar-rose-200);
+  box-shadow: var(--mar-shadow-md);
+  transform: translateY(-2px);
+}
+
+.variant-interactive:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.variant-interactive:focus-visible {
+  outline: 2px solid var(--mar-rose-500);
+  outline-offset: 2px;
+}
+
+/* Glass (Superficie flotante controlada, sin fatiga visual) */
+.variant-glass {
+  background-color: var(--mar-glass-bg);
+  border: var(--mar-glass-border);
+  backdrop-filter: var(--mar-glass-blur);
+  -webkit-backdrop-filter: var(--mar-glass-blur);
+  box-shadow: var(--mar-shadow-md);
+}
+
+/* ==========================================================================
+   PADDINGS Y RADIOS
+   ========================================================================== */
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: var(--mar-space-3);
+}
+
+.padding-md {
+  padding: var(--mar-space-4); /* 16px estándar móvil */
+}
+
+.padding-lg {
+  padding: var(--mar-space-6);
+}
+
+.radius-sm {
+  border-radius: var(--mar-radius-sm);
+}
+
+.radius-md {
+  border-radius: var(--mar-radius-md);
+}
+
+.radius-lg {
+  border-radius: var(--mar-radius-lg);
+}
+
+/* ==========================================================================
+   SECCIONES INTERNAS (SLOTS)
+   ========================================================================== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mar-space-3);
+  margin-bottom: var(--mar-space-3);
+}
+
+.body {
+  flex: 1 1 auto;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--mar-space-3);
+  margin-top: var(--mar-space-4);
+  padding-top: var(--mar-space-3);
+  border-top: 1px solid var(--mar-border-subtle);
+}

@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-2);
+  margin-top: var(--mar-space-3);
+  padding: var(--mar-space-3);
+  background: var(--mar-surface-subtle);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-md);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--mar-space-2);
+  font-size: var(--mar-text-xs);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-rose-600);
+}
+
+.focus {
+  color: var(--mar-text-muted);
+}
+
+.focus strong {
+  color: var(--mar-text-primary);
+}
+
+.questionBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mar-space-2);
+  padding: var(--mar-space-2);
+  background: var(--mar-surface-card);
+  border-radius: var(--mar-radius-sm);
+  border: 1px solid var(--mar-border-subtle);
+}
+
+.questionIcon {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.questionText {
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-medium);
+  color: var(--mar-text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.clueSection {
+  margin-top: 2px;
+}
+
+.clueToggle {
+  background: transparent;
+  border: none;
+  color: var(--mar-rose-600);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  cursor: pointer;
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.clueToggle:hover {
+  text-decoration: underline;
+}
+
+.clueBox {
+  padding: var(--mar-space-2);
+  background: var(--mar-rose-50);
+  border-left: 3px solid var(--mar-rose-400);
+  border-radius: 4px;
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-primary);
+  margin-top: 4px;
+}
+
+.clueTitle {
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-rose-700);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.clueText {
+  margin: 0;
+  line-height: 1.4;
+}

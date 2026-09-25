@@ -1,0 +1,132 @@
+.showcaseContainer {
+  width: 100%;
+  max-width: var(--mar-content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--mar-space-6) var(--mar-space-4) var(--mar-space-12);
+  box-sizing: border-box;
+  font-family: var(--mar-font-body);
+  color: var(--mar-text-primary);
+}
+
+.header {
+  margin-bottom: var(--mar-space-8);
+  padding-bottom: var(--mar-space-4);
+  border-bottom: 1px solid var(--mar-border-subtle);
+}
+
+.headerTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-3xl);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  margin-bottom: var(--mar-space-1);
+}
+
+.headerSubtitle {
+  font-size: var(--mar-text-base);
+  color: var(--mar-text-secondary);
+  line-height: 1.5;
+}
+
+.section {
+  margin-bottom: var(--mar-space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-4);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sectionTitle {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-xl);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+}
+
+.sectionDesc {
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-muted);
+}
+
+.componentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--mar-space-4);
+}
+
+@media (min-width: 480px) {
+  .componentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .componentGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--mar-space-5);
+  }
+}
+
+.flexRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--mar-space-3);
+}
+
+.colorPaletteGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--mar-space-3);
+}
+
+.colorSwatch {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--mar-radius-md);
+  border: 1px solid var(--mar-border-subtle);
+  overflow: hidden;
+  background-color: var(--mar-surface-card);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.swatchColor {
+  height: 52px;
+  width: 100%;
+}
+
+.swatchInfo {
+  padding: var(--mar-space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.swatchName {
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-semibold);
+  color: var(--mar-text-primary);
+}
+
+.swatchHex {
+  font-size: 11px;
+  color: var(--mar-text-muted);
+  font-family: monospace;
+}
+
+.categoryCard {
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-subtle);
+  border-radius: var(--mar-radius-lg);
+  padding: var(--mar-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-3);
+  box-shadow: var(--mar-shadow-sm);
+}

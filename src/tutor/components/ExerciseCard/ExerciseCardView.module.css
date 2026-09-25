@@ -1,0 +1,87 @@
+.container {
+  margin-top: var(--mar-space-3);
+  padding: var(--mar-space-3);
+  background: var(--mar-surface-card);
+  border: 1.5px dashed var(--mar-rose-300);
+  border-radius: var(--mar-radius-md);
+  box-shadow: var(--mar-shadow-sm);
+}
+
+.badgeHeader {
+  margin-bottom: var(--mar-space-2);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--mar-rose-100);
+  color: var(--mar-rose-700);
+  border-radius: var(--mar-radius-full);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-semibold);
+}
+
+.title {
+  font-family: var(--mar-font-display);
+  font-size: var(--mar-text-base);
+  font-weight: var(--mar-weight-bold);
+  color: var(--mar-text-primary);
+  margin: 0 0 var(--mar-space-2) 0;
+}
+
+.instructions {
+  font-size: var(--mar-text-sm);
+  color: var(--mar-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--mar-space-2) 0;
+}
+
+.hintsContainer {
+  margin-top: var(--mar-space-2);
+  border-top: 1px solid var(--mar-border-subtle);
+  padding-top: var(--mar-space-2);
+}
+
+.hintsToggle {
+  background: transparent;
+  border: none;
+  color: var(--mar-rose-600);
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  cursor: pointer;
+  padding: 4px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hintsToggle:hover {
+  text-decoration: underline;
+}
+
+.hintsList {
+  list-style: none;
+  padding: 0;
+  margin: var(--mar-space-2) 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-2);
+}
+
+.hintItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mar-space-2);
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-secondary);
+  line-height: 1.4;
+  background: var(--mar-rose-50);
+  padding: var(--mar-space-2);
+  border-radius: var(--mar-radius-sm);
+}
+
+.hintBullet {
+  flex-shrink: 0;
+}

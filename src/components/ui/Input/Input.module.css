@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mar-space-1);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-sm);
+  font-weight: var(--mar-weight-medium);
+  color: var(--mar-text-secondary);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  min-height: var(--mar-touch-target-min);
+  padding: var(--mar-space-3) var(--mar-space-4);
+  font-family: var(--mar-font-body);
+  font-size: var(--mar-text-base); /* 16px: evita auto-zoom en iOS */
+  line-height: 1.4;
+  color: var(--mar-text-primary);
+  background-color: var(--mar-surface-card);
+  border: 1px solid var(--mar-border-medium);
+  border-radius: var(--mar-radius-md);
+  box-shadow: var(--mar-shadow-inner);
+  transition: border-color var(--mar-transition-fast),
+              box-shadow var(--mar-transition-fast),
+              background-color var(--mar-transition-fast);
+}
+
+.input::placeholder {
+  color: var(--mar-text-muted);
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--mar-rose-300);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--mar-rose-500);
+  box-shadow: var(--mar-shadow-focus);
+  background-color: #FFFFFF;
+}
+
+.input:disabled {
+  background-color: var(--mar-surface-subtle);
+  color: var(--mar-text-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   ESTADO DE ERROR
+   ========================================================================== */
+.hasError .input {
+  border-color: var(--mar-state-error-text);
+  background-color: var(--mar-state-error-bg);
+}
+
+.hasError .input:focus {
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
+}
+
+.helperText {
+  font-size: var(--mar-text-xs);
+  color: var(--mar-text-muted);
+  margin-top: 2px;
+}
+
+.errorMessage {
+  font-size: var(--mar-text-xs);
+  font-weight: var(--mar-weight-medium);
+  color: var(--mar-state-error-text);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Iconos integrados */
+.withLeftIcon {
+  padding-left: var(--mar-space-10);
+}
+
+.withRightIcon {
+  padding-right: var(--mar-space-10);
+}
+
+.leftIcon {
+  position: absolute;
+  left: var(--mar-space-3);
+  display: flex;
+  align-items: center;
+  color: var(--mar-text-muted);
+  pointer-events: none;
+}
+
+.rightIcon {
+  position: absolute;
+  right: var(--mar-space-3);
+  display: flex;
+  align-items: center;
+  color: var(--mar-text-muted);
+}
