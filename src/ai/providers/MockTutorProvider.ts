@@ -83,15 +83,19 @@ export class MockTutorProvider implements IAITutorProvider {
       };
     }
 
-    const topicName = payload.academicContext.topicName || 'el tema actual';
-    const subjectName = payload.academicContext.subjectName || 'la materia';
+    const hasTopic = Boolean(payload.academicContext.topicName);
+    const topicName = payload.academicContext.topicName || 'tu duda de estudio';
+    const subjectName = payload.academicContext.subjectName || 'tu formación académica';
     const mode = payload.pedagogicalMode;
+
     const hasVisual = !!payload.visualContext;
     const noteTitle = payload.visualContext?.title || 'tu apunte';
 
     let message = hasVisual
       ? `¡Hola, Mar! 🌸 He recibido la fotografía de tu apunte **${noteTitle}** (${topicName}).`
-      : `¡Hola, Mar! 🌸 Estudiemos juntos **${topicName}** (${subjectName}).`;
+      : hasTopic
+      ? `¡Hola, Mar! 🌸 Estudiemos juntos **${topicName}** (${subjectName}).`
+      : '¡Hola, Mar! 🌸 Estoy aquí para ayudarte a resolver cualquier duda académica o tema que quieras explorar.';
     let socraticStep = undefined;
 
     if (mode === 'SOCRATIC') {
@@ -100,27 +104,27 @@ export class MockTutorProvider implements IAITutorProvider {
         currentLevel: level,
         guidingQuestion: hasVisual
           ? `Observando tu apunte "${noteTitle}", ¿cuál es el concepto central que anotaste sobre ${topicName}?`
-          : `¿Qué sucede cuando dos elementos cooperan para lograr un resultado mayor en ${topicName}?`,
+          : `¿Qué elementos o principios fundamentales identificas al analizar ${topicName}?`,
         clue: hasVisual
           ? 'Revisa los términos destacados en la parte superior de tu fotografía.'
-          : 'Piensa en cómo el trabajo en equipo supera el esfuerzo individual.',
-        expectedConceptFocus: hasVisual ? 'análisis del apunte' : 'cooperación sinérgica'
+          : 'Relaciona las ideas principales con lo que has aprendido en tus sesiones de estudio.',
+        expectedConceptFocus: hasVisual ? 'análisis del apunte' : `comprensión conceptual de ${topicName}`
       };
       message = hasVisual
         ? `He revisado tu apunte **${noteTitle}**. Vamos a razonarlo paso a paso, Mar: ${socraticStep.guidingQuestion}`
         : `Vamos a razonarlo paso a paso, Mar: ${socraticStep.guidingQuestion}`;
     } else if (mode === 'EXPLAIN') {
       message = hasVisual
-        ? `**Análisis de tu apunte (${noteTitle}):**\nEn la fotografía de tus notas se identifican los conceptos clave de **${topicName}**. En ${subjectName}, esto representa un proceso estructurado para coordinar recursos de manera efectiva.`
-        : `**Explicación de ${topicName}:**\nEs un proceso fundamental donde los componentes interactúan de manera coordinada para potenciar su efectividad en ${subjectName}.`;
+        ? `**Análisis de tu apunte (${noteTitle}):**\nEn la fotografía de tus notas se identifican los conceptos clave de **${topicName}**. En ${subjectName}, esto representa una estructura fundamental para comprender el tema con claridad.`
+        : `**Explicación de ${topicName}:**\nEs un concepto clave estructurado para comprender cómo interactúan los principios y elementos esenciales dentro de ${subjectName}.`;
     } else if (mode === 'SIMPLIFY') {
       message = hasVisual
-        ? `En tu apunte **${noteTitle}** tienes anotada la idea principal de **${topicName}**. Imagínalo como organizar una tarea en equipo donde 1 + 1 da mucho más que 2.`
-        : `Imagina que estás organizando un evento: si cada persona trabaja sola toma 10 horas, pero coordinadas lo logran en 3 horas con mejor resultado. ¡Eso es **${topicName}**!`;
+        ? `En tu apunte **${noteTitle}** tienes anotada la idea principal de **${topicName}**. Imagínalo paso a paso: cada parte cumple una función esencial que facilita ver el panorama general de manera sencilla.`
+        : `Imagina que desglosamos **${topicName}** de forma muy sencilla: cada componente se conecta con el siguiente de forma lógica para lograr un resultado claro y comprensible.`;
     } else if (mode === 'EXAMPLE') {
       message = hasVisual
-        ? `Tomando como base lo que anotaste en **${noteTitle}**, un ejemplo práctico en Recursos Humanos es cuando dos departamentos se integran para optimizar un proceso de reclutamiento.`
-        : `Un ejemplo clásico de **${topicName}** en Recursos Humanos es cuando un equipo multidisciplinario resuelve una contingencia laboral combinando habilidades legales y psicológicas.`;
+        ? `Tomando como base lo que anotaste en **${noteTitle}**, un ejemplo práctico es observar cómo este concepto se aplica en situaciones reales del entorno escolar o profesional.`
+        : `Un ejemplo práctico de **${topicName}** es observar cómo estos conceptos se aplican en situaciones cotidianas o en dinámicas reales de ${subjectName}.`;
     } else if (mode === 'REVIEW' || payload.studentInput?.studentReflection) {
       const reflectionText = (
         payload.studentInput?.studentReflection ||
@@ -155,6 +159,7 @@ export class MockTutorProvider implements IAITutorProvider {
         message = `🌸 ¡Excelente reflexión, Mar! Explicaste la idea principal de **${topicName}** con tus propias palabras. Conectar lo que aprendiste fortalece tu comprensión. Ahora intenta pensar en cómo aplicarías esto en una situación real.`;
       }
     }
+
 
     const structuredData: AITutorResponse = {
       id: `mock-resp-${Date.now()}`,

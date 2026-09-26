@@ -201,19 +201,11 @@ export function App() {
           />
         );
       case 'tutor': {
-        const defaultSubject = selectedSubjectId
-          ? subjectRepository.getById(selectedSubjectId)
-          : subjectRepository.getById('ciencias-3');
-        const defaultTopic = defaultSubject?.topics?.find((t) => t.status === 'en_estudio') || defaultSubject?.topics?.[0];
+        const initialSelection = tutorSelection || (selectedSubjectId ? { subjectId: selectedSubjectId } : undefined);
 
         return (
           <TutorView
-            initialSelection={
-              tutorSelection || {
-                subjectId: defaultSubject?.id,
-                topicId: defaultTopic?.id
-              }
-            }
+            initialSelection={initialSelection}
             onBack={() => {
               setTutorSelection(null);
               handleNavigate('home');
@@ -221,6 +213,7 @@ export function App() {
           />
         );
       }
+
       default:
         return (
           <HomeView

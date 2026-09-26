@@ -191,12 +191,19 @@ describe('Task Group 12 — AI Provider Abstraction Tests', () => {
     expect(geminiProvider.providerId).toBe('google-gemini');
 
     const defaultProvider = TutorProviderFactory.getDefault();
-    expect(defaultProvider.providerId).toBe('mock-tutor');
+    expect(defaultProvider.providerId).toBe('google-gemini');
+
+    // Cambio dinámico de proveedor por defecto
+    TutorProviderFactory.setDefaultProvider('mock');
+    expect(TutorProviderFactory.getDefault().providerId).toBe('mock-tutor');
+    TutorProviderFactory.setDefaultProvider('gemini');
+    expect(TutorProviderFactory.getDefault().providerId).toBe('google-gemini');
 
     // Fallback seguro ante proveedor desconocido
     const fallbackProvider = TutorProviderFactory.create('non-existent-provider');
     expect(fallbackProvider.providerId).toBe('mock-tutor');
   });
+
 
   // TEST 10: Mock provider works 100% offline
   it('Test 10: MockTutorProvider funciona completamente offline sin realizar peticiones de red', async () => {

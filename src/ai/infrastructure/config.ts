@@ -13,6 +13,11 @@ export interface AITutorConfig {
   modelName: string;
 
   /**
+   * Endpoint de API proxy seguro para llamadas desde frontend
+   */
+  apiEndpoint?: string;
+
+  /**
    * Timeout global en milisegundos (TG11 define 12 segundos)
    */
   timeoutMs: number;
@@ -35,8 +40,9 @@ export interface AITutorConfig {
  * Valores de configuración por defecto de MAR IA
  */
 export const DEFAULT_AI_CONFIG: AITutorConfig = {
-  defaultProvider: 'mock',
-  modelName: 'gemini-2.5-flash',
+  defaultProvider: 'gemini',
+  modelName: 'gemini-3.8-flash',
+  apiEndpoint: '/api/tutor',
   timeoutMs: 12000,             // 12 segundos según TG11
   maxRetries: 2,                // 2 reintentos con exponential backoff
   circuitBreaker: {
@@ -44,3 +50,4 @@ export const DEFAULT_AI_CONFIG: AITutorConfig = {
     resetTimeoutMs: 30000       // 30 segundos de enfriamiento
   }
 };
+
