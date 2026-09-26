@@ -7,6 +7,7 @@ import { ComprehensionCheckView } from '../ComprehensionCheck/ComprehensionCheck
 import { ExerciseCardView } from '../ExerciseCard/ExerciseCardView';
 import { SuggestedActionsView } from '../SuggestedActions/SuggestedActionsView';
 import { SuggestedAction } from '../../../ai/domain/types';
+import { MarkdownRenderer } from '../../../components/ui/MarkdownRenderer/MarkdownRenderer';
 
 export interface TutorMessageBubbleProps {
   message: TutorClientMessage;
@@ -87,11 +88,7 @@ export const TutorMessageBubble: React.FC<TutorMessageBubbleProps> = ({
         </div>
 
         <div className={styles.messageContent}>
-          {message.text.split('\n\n').map((paragraph, idx) => (
-            <p key={idx} className={styles.messageParagraph}>
-              {paragraph}
-            </p>
-          ))}
+          <MarkdownRenderer content={message.text} />
         </div>
 
         {/* Paso Socrático */}

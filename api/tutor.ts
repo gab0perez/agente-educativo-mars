@@ -86,7 +86,8 @@ export default async function handler(req: IncomingMessage & { body?: any }, res
         '    { "id": "action-1", "label": "Pregunta de seguimiento", "mode": "EXPLAIN" }',
         '  ]',
         '}',
-        `7. Modo pedagógico activo: ${safePayload.pedagogicalMode}. Nivel socrático: ${safePayload.socraticHintLevel}.`
+        `7. Modo pedagógico activo: ${safePayload.pedagogicalMode}. Nivel socrático: ${safePayload.socraticHintLevel}.`,
+        '8. FORMATO DE MATEMÁTICAS Y TEXTO (SIN SINTAXIS LATEX): NO uses caracteres o delimitadores de LaTeX ($$, $, \\frac, \\sqrt, \\pm, \\rightarrow). Escribe todas las fórmulas, pasos y símbolos en texto plano y Unicode limpio (e.g. x = (-b ± √(b² - 4ac)) / (2a), x², x₁, ➔, ≠, ÷) para que se lean de forma natural, estética y clara.'
       ].join('\n');
 
       const userPrompt = JSON.stringify(safePayload, null, 2);
