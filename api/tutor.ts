@@ -37,15 +37,27 @@ export default async function handler(req: IncomingMessage & { body?: any }, res
     return;
   }
 
-  let body = '';
-  req.on('data', (chunk) => {
-    body += chunk;
-  });
+  // Obtener el cuerpo de la petición (Vercel lo pre-parsea en req.body; si no, leer stream)
+  let parsed: any = {};
+  try {
+    if (req.body) {
+      parsed = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    } else {
+      const rawBody = await new Promise<string>((resolve) => {
+        let b = '';
+        req.on('data', (chunk) => {
+          b += chunk;
+        });
+        req.on('end', () => resolve(b));
+      });
+      parsed = JSON.parse(rawBody || '{}');
+    }
+  } catch {
+    parsed = {};
+  }
 
-  req.on('end', async () => {
-    try {
-      const parsed = JSON.parse(body || '{}');
-      const { payload, options, modelName } = parsed;
+  try {
+    const { payload, options, modelName } = parsed;
 
       const safePayload = {
         sessionId: payload?.sessionId || 'session-direct',
@@ -210,5 +222,4 @@ export default async function handler(req: IncomingMessage & { body?: any }, res
         res.end(JSON.stringify({ error: 'GEMINI_EXECUTION_ERROR', message }));
       }
     }
-  });
 }
