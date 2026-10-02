@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { handleClassroomRequest } from '../../src/server/routes/classroomViteMiddleware';
+import { handleClassroomRequest } from '../../src/server/classroomCore';
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
   const handled = handleClassroomRequest(req, res, '/api/classroom/sync');
