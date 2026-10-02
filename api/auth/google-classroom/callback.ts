@@ -1,0 +1,10 @@
+import type { IncomingMessage, ServerResponse } from 'http';
+import { handleClassroomRequest } from '../../../src/server/routes/classroomViteMiddleware';
+
+export default async function handler(req: IncomingMessage, res: ServerResponse) {
+  const handled = handleClassroomRequest(req, res, req.url || '/api/auth/google-classroom/callback');
+  if (!handled && !res.headersSent) {
+    res.writeHead(404, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'NOT_FOUND' }));
+  }
+}

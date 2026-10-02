@@ -1,18 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/api/auth/google-classroom/:path*",
-      "destination": "/api/classroom"
-    },
-    {
-      "source": "/api/auth/google-classroom",
-      "destination": "/api/classroom"
-    },
-    {
-      "source": "/api/classroom/:path*",
-      "destination": "/api/classroom"
-    },
-    {
       "source": "/((?!api/.*).*)",
       "destination": "/index.html"
     }
