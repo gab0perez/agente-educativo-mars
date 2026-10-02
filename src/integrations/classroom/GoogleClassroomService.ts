@@ -33,7 +33,10 @@ export class GoogleClassroomService {
    * Obtiene la URL oficial de Google OAuth para redirigir a la estudiante
    */
   async getAuthUrl(): Promise<string> {
-    const res = await fetch('/api/auth/google-classroom');
+    let res = await fetch('/api/classroom?action=auth');
+    if (!res.ok) {
+      res = await fetch('/api/auth/google-classroom');
+    }
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.message || 'No se pudo iniciar la autenticación con Google.');
@@ -47,7 +50,10 @@ export class GoogleClassroomService {
    */
   async getStatus(): Promise<ClassroomConnectionStatus> {
     try {
-      const res = await fetch('/api/classroom/status');
+      let res = await fetch('/api/classroom?action=status');
+      if (!res.ok) {
+        res = await fetch('/api/classroom/status');
+      }
       if (!res.ok) {
         return { isConnected: false };
       }
@@ -61,10 +67,16 @@ export class GoogleClassroomService {
    * Ejecuta la sincronización real con Google Classroom API
    */
   async syncNow(): Promise<ClassroomSyncSummary> {
-    const res = await fetch('/api/classroom/sync', {
+    let res = await fetch('/api/classroom?action=sync', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });
+    if (!res.ok) {
+      res = await fetch('/api/classroom/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
@@ -141,7 +153,10 @@ export class GoogleClassroomService {
    * Desconecta la cuenta y limpia la sesión en el backend
    */
   async disconnect(): Promise<boolean> {
-    const res = await fetch('/api/classroom/disconnect', { method: 'POST' });
+    let res = await fetch('/api/classroom?action=disconnect', { method: 'POST' });
+    if (!res.ok) {
+      res = await fetch('/api/classroom/disconnect', { method: 'POST' });
+    }
     if (!res.ok) {
       throw new Error('Error al desconectar la cuenta de Google Classroom.');
     }

@@ -63,7 +63,7 @@ class ClassroomTokenStore {
         }
       }
     } catch {
-      // Fallback silencioso a memoria
+      // Fallback seguro a memoria
     }
   }
 
@@ -72,7 +72,7 @@ class ClassroomTokenStore {
       const items = Array.from(this.inMemoryStore.values());
       fs.writeFileSync(TOKENS_FILE_PATH, JSON.stringify(items, null, 2), 'utf-8');
     } catch {
-      // Fallback silencioso
+      // Fallback seguro a memoria
     }
   }
 
@@ -152,7 +152,7 @@ class ClassroomApiClient {
   public getAuthUrl(state: string, redirectUri: string): string {
     const clientId = this.clientId;
     if (!clientId) {
-      throw new Error('GOOGLE_CLIENT_ID no está configurado en las variables de entorno.');
+      throw new Error('GOOGLE_CLIENT_ID no está configurado en las variables de entorno de Vercel.');
     }
 
     const params = new URLSearchParams({
@@ -357,136 +357,144 @@ class ClassroomApiClient {
 const apiClient = new ClassroomApiClient();
 
 /**
- * Serverless function handler for all Google Classroom routes in Vercel
+ * Handler universal para endpoints de Google Classroom
  */
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
-  const host = (req.headers['x-forwarded-host'] as string) || req.headers.host || 'agente-educativo-mars.vercel.app';
-  const protocol = (req.headers['x-forwarded-proto'] as string) || (host.includes('localhost') ? 'http' : 'https');
-  const matchedPath = (req.headers['x-matched-path'] as string) || (req.headers['x-invoke-path'] as string) || '';
-  const rawUrl = req.url || '';
+  try {
+    const host = (req.headers['x-forwarded-host'] as string) || req.headers.host || 'agente-educativo-mars.vercel.app';
+    const protocol = (req.headers['x-forwarded-proto'] as string) || (host.includes('localhost') ? 'http' : 'https');
+    const rawUrl = req.url || '';
 
-  const parsedUrl = new URL(rawUrl, `${protocol}://${host}`);
-  const pathname = matchedPath || parsedUrl.pathname;
+    const parsedUrl = new URL(rawUrl, `${protocol}://${host}`);
+    const pathname = parsedUrl.pathname;
+    const action = parsedUrl.searchParams.get('action') || '';
 
-  const redirectUri =
-    process.env.GOOGLE_CLASSROOM_REDIRECT_URI || `${protocol}://${host}/api/auth/google-classroom/callback`;
+    const redirectUri =
+      process.env.GOOGLE_CLASSROOM_REDIRECT_URI || `${protocol}://${host}/api/auth/google-classroom/callback`;
 
-  // 1. Iniciar OAuth: GET /api/auth/google-classroom
-  if (
-    pathname === '/api/auth/google-classroom' ||
-    pathname === '/api/auth/google-classroom/' ||
-    (rawUrl.includes('/api/auth/google-classroom') && !rawUrl.includes('/callback'))
-  ) {
-    try {
-      const state = `mar-state-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
-      const url = apiClient.getAuthUrl(state, redirectUri);
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ url, state }));
-    } catch (error: unknown) {
-      const msg = error instanceof Error ? error.message : 'Error al generar URL de autorización';
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'AUTH_URL_ERROR', message: msg }));
-    }
-    return;
-  }
-
-  // 2. Callback OAuth: GET /api/auth/google-classroom/callback
-  if (pathname.includes('/api/auth/google-classroom/callback') || rawUrl.includes('/callback')) {
-    const code = parsedUrl.searchParams.get('code');
-    const errorParam = parsedUrl.searchParams.get('error');
-
-    if (errorParam) {
-      res.writeHead(302, { Location: `/?classroom_error=${encodeURIComponent(errorParam)}#tasks` });
-      res.end();
+    // 1. Iniciar OAuth
+    if (
+      action === 'auth' ||
+      pathname === '/api/auth/google-classroom' ||
+      pathname === '/api/auth/google-classroom/' ||
+      (rawUrl.includes('/api/auth/google-classroom') && !rawUrl.includes('/callback'))
+    ) {
+      try {
+        const state = `mar-state-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
+        const url = apiClient.getAuthUrl(state, redirectUri);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ url, state }));
+      } catch (error: unknown) {
+        const msg = error instanceof Error ? error.message : 'Error al generar URL de autorización';
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'AUTH_URL_ERROR', message: msg }));
+      }
       return;
     }
 
-    if (!code) {
-      res.writeHead(400, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end('<h3>Error: Código de autorización no proporcionado por Google.</h3>');
-      return;
-    }
+    // 2. Callback OAuth
+    if (action === 'callback' || pathname.includes('/api/auth/google-classroom/callback') || rawUrl.includes('/callback')) {
+      const code = parsedUrl.searchParams.get('code');
+      const errorParam = parsedUrl.searchParams.get('error');
 
-    try {
-      const { accessToken, refreshToken, expiryDate, scopes, userInfo } = await apiClient.exchangeCode(code, redirectUri);
-      tokenStore.saveCredential({
-        studentId: 'mar-default',
-        googleUserId: userInfo.id,
-        email: userInfo.email,
-        displayName: userInfo.name,
-        pictureUrl: userInfo.picture,
-        accessToken,
-        refreshToken,
-        expiryDate,
-        scopes,
-        connectedAt: new Date().toISOString()
-      });
-
-      res.writeHead(302, { Location: '/?classroom=connected#tasks' });
-      res.end();
-    } catch (err: any) {
-      res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(`<h3>Error al vincular Google Classroom:</h3><p>${err?.message || err}</p>`);
-    }
-    return;
-  }
-
-  // 3. Estado de Conexión: GET /api/classroom/status
-  if (pathname.includes('/status') || rawUrl.includes('/status')) {
-    const status = tokenStore.getPublicStatus('mar-default');
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(status));
-    return;
-  }
-
-  // 4. Sincronización Real: POST /api/classroom/sync
-  if ((pathname.includes('/sync') || rawUrl.includes('/sync')) && req.method === 'POST') {
-    try {
-      const accessToken = await apiClient.getValidAccessToken('mar-default');
-      const courses = await apiClient.fetchRealCourses(accessToken);
-      const allCourseWork: Array<{ courseId: string; courseWork: any[] }> = [];
-
-      for (const course of courses) {
-        try {
-          const courseWork = await apiClient.fetchRealCourseWork(accessToken, course.id);
-          allCourseWork.push({ courseId: course.id, courseWork });
-        } catch {
-          // Continuar con otros cursos
-        }
+      if (errorParam) {
+        res.writeHead(302, { Location: `/?classroom_error=${encodeURIComponent(errorParam)}#tasks` });
+        res.end();
+        return;
       }
 
-      tokenStore.updateLastSynced('mar-default');
-      const now = new Date().toISOString();
+      if (!code) {
+        res.writeHead(400, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end('<h3>Error: Código de autorización no proporcionado por Google.</h3>');
+        return;
+      }
 
-      res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(
-        JSON.stringify({
-          courses,
-          allCourseWork,
-          syncedAt: now
-        })
-      );
-    } catch (err: any) {
-      const status = String(err?.message || '').includes('No hay una cuenta') ? 401 : 500;
-      res.writeHead(status, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'SYNC_ERROR', message: err?.message || err }));
+      try {
+        const { accessToken, refreshToken, expiryDate, scopes, userInfo } = await apiClient.exchangeCode(code, redirectUri);
+        tokenStore.saveCredential({
+          studentId: 'mar-default',
+          googleUserId: userInfo.id,
+          email: userInfo.email,
+          displayName: userInfo.name,
+          pictureUrl: userInfo.picture,
+          accessToken,
+          refreshToken,
+          expiryDate,
+          scopes,
+          connectedAt: new Date().toISOString()
+        });
+
+        res.writeHead(302, { Location: '/?classroom=connected#tasks' });
+        res.end();
+      } catch (err: any) {
+        res.writeHead(500, { 'Content-Type': 'text/html; charset=utf-8' });
+        res.end(`<h3>Error al vincular Google Classroom:</h3><p>${err?.message || err}</p>`);
+      }
+      return;
     }
-    return;
-  }
 
-  // 5. Desconexión: POST /api/classroom/disconnect
-  if ((pathname.includes('/disconnect') || rawUrl.includes('/disconnect')) && req.method === 'POST') {
-    try {
-      await apiClient.disconnect('mar-default');
+    // 3. Estado de Conexión
+    if (action === 'status' || pathname.includes('/status') || rawUrl.includes('/status')) {
+      const status = tokenStore.getPublicStatus('mar-default');
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true }));
-    } catch (err: any) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'DISCONNECT_ERROR', message: err?.message || err }));
+      res.end(JSON.stringify(status));
+      return;
     }
-    return;
-  }
 
-  res.writeHead(404, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ error: 'NOT_FOUND', path: pathname }));
+    // 4. Sincronización Real
+    if ((action === 'sync' || pathname.includes('/sync') || rawUrl.includes('/sync')) && req.method === 'POST') {
+      try {
+        const accessToken = await apiClient.getValidAccessToken('mar-default');
+        const courses = await apiClient.fetchRealCourses(accessToken);
+        const allCourseWork: Array<{ courseId: string; courseWork: any[] }> = [];
+
+        for (const course of courses) {
+          try {
+            const courseWork = await apiClient.fetchRealCourseWork(accessToken, course.id);
+            allCourseWork.push({ courseId: course.id, courseWork });
+          } catch {
+            // Continuar con los demás cursos
+          }
+        }
+
+        tokenStore.updateLastSynced('mar-default');
+        const now = new Date().toISOString();
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(
+          JSON.stringify({
+            courses,
+            allCourseWork,
+            syncedAt: now
+          })
+        );
+      } catch (err: any) {
+        const status = String(err?.message || '').includes('No hay una cuenta') ? 401 : 500;
+        res.writeHead(status, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'SYNC_ERROR', message: err?.message || err }));
+      }
+      return;
+    }
+
+    // 5. Desconexión
+    if ((action === 'disconnect' || pathname.includes('/disconnect') || rawUrl.includes('/disconnect')) && req.method === 'POST') {
+      try {
+        await apiClient.disconnect('mar-default');
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true }));
+      } catch (err: any) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'DISCONNECT_ERROR', message: err?.message || err }));
+      }
+      return;
+    }
+
+    // Ruta por defecto: Estado
+    const defaultStatus = tokenStore.getPublicStatus('mar-default');
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(defaultStatus));
+  } catch (globalErr: any) {
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'INTERNAL_SERVER_ERROR', message: globalErr?.message || String(globalErr) }));
+  }
 }
