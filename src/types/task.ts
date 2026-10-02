@@ -3,9 +3,13 @@
  * Mantiene estricta separación con LearningEvidence, MasteryState y ReviewItem.
  */
 
+import { ClassroomTaskMetadata } from './classroom';
+
 export type TaskStatus = 'PENDING' | 'COMPLETED';
 
 export type TaskUrgency = 'NO_DUE_DATE' | 'UPCOMING' | 'DUE_TODAY' | 'OVERDUE' | 'COMPLETED';
+
+export type TaskOrigin = 'LOCAL' | 'GOOGLE_CLASSROOM';
 
 export interface AcademicTask {
   id: string;
@@ -24,6 +28,10 @@ export interface AcademicTask {
   // Estado explícito
   status: TaskStatus;
 
+  // Origen y metadatos de integración
+  origin?: TaskOrigin;
+  classroomMetadata?: ClassroomTaskMetadata;
+
   // Auditoría y persistencia
   createdAt: string;
   updatedAt: string;
@@ -38,6 +46,8 @@ export interface CreateTaskInput {
   topicId?: string;
   topicName?: string;
   dueAt?: string;
+  origin?: TaskOrigin;
+  classroomMetadata?: ClassroomTaskMetadata;
 }
 
 export interface UpdateTaskInput {
@@ -49,6 +59,8 @@ export interface UpdateTaskInput {
   topicName?: string | null;
   dueAt?: string | null;
   status?: TaskStatus;
+  origin?: TaskOrigin;
+  classroomMetadata?: ClassroomTaskMetadata;
 }
 
 /**

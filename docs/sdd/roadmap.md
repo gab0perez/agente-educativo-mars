@@ -173,6 +173,7 @@ flowchart TD
 ### Fase 15: Sistema de Tareas Académicas con Tutoría Guiada ⏳
 *Objetivo: Planificación de entregas y resolución guiada socrática paso a paso.*
 - [ ] CRUD de tareas (Materia, título, fecha de entrega, prioridad, estado y fotos adjuntas).
+- [ ] Integración bidireccional con **Google Classroom** (importación de tareas, fechas límite y entregas directas).
 - [ ] Asistente de tareas con IA en modo socrático (brinda pistas y explica conceptos sin dar la solución directa).
 - [ ] Notificaciones y recordatorios visuales de fechas límite próximas.
 

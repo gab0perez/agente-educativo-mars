@@ -5,4 +5,4 @@ export * from './notes';
 export * from './reflection';
 export * from './ai';
 export * from './task';
-
+export * from './classroom';

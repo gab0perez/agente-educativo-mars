@@ -3,6 +3,7 @@ import { AcademicTask, CreateTaskInput, UpdateTaskInput } from '../../types/task
 import { useAcademicTasks } from '../../tasks/hooks/useAcademicTasks';
 import { AcademicTaskList } from '../../tasks/components/AcademicTaskList/AcademicTaskList';
 import { AcademicTaskModal } from '../../tasks/components/AcademicTaskModal/AcademicTaskModal';
+import { ClassroomConnectionCard } from '../../integrations/classroom';
 import { Button } from '../../components/ui/Button/Button';
 import styles from './TasksView.module.css';
 
@@ -32,7 +33,8 @@ export const TasksView: React.FC<TasksViewProps> = ({
     updateTask,
     completeTask,
     reopenTask,
-    deleteTask
+    deleteTask,
+    refreshTasks
   } = useAcademicTasks({ filter });
 
   const handleOpenCreate = () => {
@@ -82,7 +84,7 @@ export const TasksView: React.FC<TasksViewProps> = ({
             <span>Mis Tareas</span>
           </h1>
           <p className={styles.subtitle}>
-            Organiza tus entregas y deberes escolares del CETis 164
+            Organiza tus entregas y deberes escolares
           </p>
         </div>
 
@@ -96,6 +98,11 @@ export const TasksView: React.FC<TasksViewProps> = ({
           ＋ Nueva Tarea
         </Button>
       </header>
+
+      {/* Tarjeta de integración con Google Classroom */}
+      <ClassroomConnectionCard
+        onSyncComplete={() => refreshTasks()}
+      />
 
       <div className={styles.toolbar}>
         <div className={styles.filterGroup} role="tablist" aria-label="Filtros de tareas">
@@ -146,7 +153,7 @@ export const TasksView: React.FC<TasksViewProps> = ({
         emptyDescription={
           filter === 'COMPLETED'
             ? 'Cuando marques tus tareas como hechas, se guardarán aquí para tu referencia.'
-            : 'Por ahora no tienes tareas pendientes. Puedes agregar una cuando te dejen deberes en clase.'
+            : 'Por ahora no tienes tareas pendientes. Puedes sincronizar con Google Classroom o agregar una manualmente.'
         }
         emptyIcon={filter === 'COMPLETED' ? '🌸' : '✨'}
         onAddNew={filter !== 'COMPLETED' ? handleOpenCreate : undefined}

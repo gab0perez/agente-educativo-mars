@@ -28,6 +28,8 @@ export const AcademicTaskCard: React.FC<AcademicTaskCardProps> = ({
   const urgency = getTaskUrgency(task);
   const formattedDate = formatTaskDueDate(task.dueAt);
 
+  const isClassroom = task.origin === 'GOOGLE_CLASSROOM' || !!task.classroomMetadata;
+
   const urgencyConfig = {
     OVERDUE: {
       label: `⚠️ ${formattedDate}`,
@@ -83,6 +85,18 @@ export const AcademicTaskCard: React.FC<AcademicTaskCardProps> = ({
         <span className={`${styles.badge} ${urgencyConfig.className}`}>
           {urgencyConfig.label}
         </span>
+
+        {isClassroom && (
+          <a
+            href={task.classroomMetadata?.alternateLink || 'https://classroom.google.com'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.badge} ${styles.classroomBadge}`}
+            title="Abrir en Google Classroom"
+          >
+            🏛️ Classroom
+          </a>
+        )}
 
         {task.subjectName && (
           <span className={`${styles.badge} ${styles.subjectBadge}`}>

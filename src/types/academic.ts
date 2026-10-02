@@ -23,4 +23,6 @@ export interface Subject {
   description: string;
   icon: string;
   topics: Topic[];
+  origin?: 'LOCAL' | 'GOOGLE_CLASSROOM';
+  externalId?: string;
 }

@@ -2,6 +2,26 @@ import { defineConfig, loadEnv, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { GoogleGenAI } from '@google/genai';
+import { handleClassroomRequest } from './src/server/routes/classroomViteMiddleware';
+
+/**
+ * Plugin de middleware para gestionar rutas y sincronización real de Google Classroom (Node.js)
+ */
+function classroomServerPlugin(): Plugin {
+  return {
+    name: 'mar-classroom-server-plugin',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const url = req.url || '';
+        if (url.startsWith('/api/auth/google-classroom') || url.startsWith('/api/classroom')) {
+          const handled = handleClassroomRequest(req, res, url);
+          if (handled) return;
+        }
+        next();
+      });
+    }
+  };
+}
 
 /**
  * Plugin de middleware para gestionar llamadas a Gemini del lado del servidor (Node.js)
@@ -224,6 +244,7 @@ function geminiServerPlugin(): Plugin {
 export default defineConfig({
   plugins: [
     react(),
+    classroomServerPlugin(),
     geminiServerPlugin(),
     VitePWA({
       registerType: 'autoUpdate',

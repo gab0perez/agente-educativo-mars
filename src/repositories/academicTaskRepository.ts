@@ -4,12 +4,14 @@ import { StorageAdapter, defaultStorageAdapter } from '../storage';
 export interface IAcademicTaskRepository {
   getAll(): AcademicTask[];
   getById(id: string): AcademicTask | null;
+  getByClassroomWorkId(courseWorkId: string): AcademicTask | null;
   getPending(): AcademicTask[];
   getCompleted(): AcademicTask[];
   getBySubject(subjectId: string): AcademicTask[];
   getByTopic(topicId: string): AcademicTask[];
   create(input: CreateTaskInput): AcademicTask;
   update(id: string, updates: UpdateTaskInput): AcademicTask | null;
+  upsertClassroomTask(input: CreateTaskInput): { task: AcademicTask; isNew: boolean };
   delete(id: string): boolean;
   markCompleted(id: string): AcademicTask | null;
   markPending(id: string): AcademicTask | null;
@@ -32,6 +34,11 @@ export class LocalAcademicTaskRepository implements IAcademicTaskRepository {
   getById(id: string): AcademicTask | null {
     const tasks = this.getAll();
     return tasks.find((t) => t.id === id) || null;
+  }
+
+  getByClassroomWorkId(courseWorkId: string): AcademicTask | null {
+    const tasks = this.getAll();
+    return tasks.find((t) => t.classroomMetadata?.courseWorkId === courseWorkId) || null;
   }
 
   getPending(): AcademicTask[] {
@@ -73,6 +80,8 @@ export class LocalAcademicTaskRepository implements IAcademicTaskRepository {
       topicName: input.topicName || undefined,
       dueAt: input.dueAt || undefined,
       status: 'PENDING',
+      origin: input.origin || 'LOCAL',
+      classroomMetadata: input.classroomMetadata || undefined,
       createdAt: now,
       updatedAt: now
     };
@@ -80,6 +89,31 @@ export class LocalAcademicTaskRepository implements IAcademicTaskRepository {
     tasks.unshift(newTask);
     this.storage.setItem(ACADEMIC_TASKS_STORAGE_KEY, tasks);
     return newTask;
+  }
+
+  upsertClassroomTask(input: CreateTaskInput): { task: AcademicTask; isNew: boolean } {
+    const workId = input.classroomMetadata?.courseWorkId;
+    if (workId) {
+      const existing = this.getByClassroomWorkId(workId);
+      if (existing) {
+        const updated = this.update(existing.id, {
+          title: input.title,
+          description: input.description,
+          subjectId: input.subjectId,
+          subjectName: input.subjectName,
+          dueAt: input.dueAt,
+          origin: 'GOOGLE_CLASSROOM',
+          classroomMetadata: input.classroomMetadata
+        });
+        return { task: updated || existing, isNew: false };
+      }
+    }
+
+    const created = this.create({
+      ...input,
+      origin: 'GOOGLE_CLASSROOM'
+    });
+    return { task: created, isNew: true };
   }
 
   update(id: string, updates: UpdateTaskInput): AcademicTask | null {
@@ -119,6 +153,14 @@ export class LocalAcademicTaskRepository implements IAcademicTaskRepository {
 
     if (updates.dueAt !== undefined) {
       tasks[index].dueAt = updates.dueAt || undefined;
+    }
+
+    if (updates.origin !== undefined) {
+      tasks[index].origin = updates.origin;
+    }
+
+    if (updates.classroomMetadata !== undefined) {
+      tasks[index].classroomMetadata = updates.classroomMetadata || undefined;
     }
 
     if (updates.status !== undefined) {
