@@ -21,25 +21,38 @@ export interface ClassroomApiConfig {
 }
 
 export class ClassroomApiClient {
-  private clientId: string;
-  private clientSecret: string;
-  private redirectUri: string;
+  private customClientId?: string;
+  private customClientSecret?: string;
+  private customRedirectUri?: string;
   private tokenStore: ClassroomTokenStore;
 
   constructor(config: ClassroomApiConfig = {}) {
-    this.clientId = config.clientId || process.env.GOOGLE_CLIENT_ID || '';
-    this.clientSecret = config.clientSecret || process.env.GOOGLE_CLIENT_SECRET || '';
-    this.redirectUri = config.redirectUri || process.env.GOOGLE_CLASSROOM_REDIRECT_URI || 'http://localhost:3000/api/auth/google-classroom/callback';
+    this.customClientId = config.clientId;
+    this.customClientSecret = config.clientSecret;
+    this.customRedirectUri = config.redirectUri;
     this.tokenStore = config.tokenStore || classroomTokenStore;
   }
 
+  public get clientId(): string {
+    return this.customClientId || process.env.GOOGLE_CLIENT_ID || '';
+  }
+
+  public get clientSecret(): string {
+    return this.customClientSecret || process.env.GOOGLE_CLIENT_SECRET || '';
+  }
+
+  public get redirectUri(): string {
+    return this.customRedirectUri || process.env.GOOGLE_CLASSROOM_REDIRECT_URI || 'http://localhost:3000/api/auth/google-classroom/callback';
+  }
+
   public getAuthUrl(state: string, redirectUriOverride?: string): string {
-    if (!this.clientId) {
+    const clientId = this.clientId;
+    if (!clientId) {
       throw new Error('GOOGLE_CLIENT_ID no está configurado en las variables de entorno del servidor.');
     }
 
     const params = new URLSearchParams({
-      client_id: this.clientId,
+      client_id: clientId,
       redirect_uri: redirectUriOverride || this.redirectUri,
       response_type: 'code',
       scope: CLASSROOM_SCOPES.join(' '),
@@ -58,7 +71,9 @@ export class ClassroomApiClient {
     scopes: string[];
     userInfo: { id: string; email: string; name: string; picture?: string };
   }> {
-    if (!this.clientId || !this.clientSecret) {
+    const clientId = this.clientId;
+    const clientSecret = this.clientSecret;
+    if (!clientId || !clientSecret) {
       throw new Error('GOOGLE_CLIENT_ID o GOOGLE_CLIENT_SECRET no están configurados en el servidor.');
     }
 

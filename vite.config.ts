@@ -12,6 +12,11 @@ function classroomServerPlugin(): Plugin {
     name: 'mar-classroom-server-plugin',
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
+        const env = loadEnv('development', process.cwd(), '');
+        if (env.GOOGLE_CLIENT_ID) process.env.GOOGLE_CLIENT_ID = env.GOOGLE_CLIENT_ID;
+        if (env.GOOGLE_CLIENT_SECRET) process.env.GOOGLE_CLIENT_SECRET = env.GOOGLE_CLIENT_SECRET;
+        if (env.GOOGLE_CLASSROOM_REDIRECT_URI) process.env.GOOGLE_CLASSROOM_REDIRECT_URI = env.GOOGLE_CLASSROOM_REDIRECT_URI;
+
         const url = req.url || '';
         if (url.startsWith('/api/auth/google-classroom') || url.startsWith('/api/classroom')) {
           const handled = handleClassroomRequest(req, res, url);
